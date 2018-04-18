@@ -58,7 +58,7 @@ class WonderQ{
        // console.log(`${id}:${message}`);
         return id;
     }
-
+    //for monitoring purposes
     incrementCount(type){
         switch (type.toLowerCase()) {
             case 'consumer':
@@ -71,7 +71,7 @@ class WonderQ{
                 break;
         }
     }
-
+//for monitoring purposes
     decrementCount(type){
         switch (type.toLowerCase()) {
             case 'consumer':
@@ -89,7 +89,7 @@ class WonderQ{
         this._beingProcessed.delete(id);
         this._timeoutStore.delete(id);
     }
-
+    
     setTimerValue(time){
         this._TIMER = time;
     }
