@@ -1,6 +1,6 @@
 const wonderQ = require('./messageStore');
 
-
+//IT LIVES
 let id1 = wonderQ.addMessage({message:'haaan',data:12});
 let id2 = wonderQ.addMessage('Yerrrr');
 
