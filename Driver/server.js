@@ -9,6 +9,9 @@ app.get('/',(req,res,next)=>{
     console.log(wonderQ);
 });
 
+
+
+
 let inspectorID =[];
 let clients = [];
 let consumerList = [];
@@ -68,7 +71,7 @@ io.on('connection',(client)=>{
 
     client.on('addingMessage',(data)=>{
         console.log(`Message added from Producer:${data.id}`)
-        const id = wonderQ.addMessage(data.text);
+        const id = wonderQ.addMessage(data.text,data.duration);
         console.log(id);
         console.log(data.id);
         client.emit('messageAdded',`Message ${id} with text: ${data.text} has been added.`);

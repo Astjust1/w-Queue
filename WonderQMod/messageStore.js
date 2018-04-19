@@ -1,5 +1,6 @@
 const uuidv4 = require('uuid/v4');
 
+
 class WonderQ{
     constructor(){
         this._TIMER = 10000; //timer in milliseconds DEFAULTS TO 100
@@ -13,9 +14,10 @@ class WonderQ{
 
         this._numConsumers = 0;
         this._numProducers = 0;
+
     }
     //PRIVATE METHODS
-   _createTimer(key){
+   _createTimer(key,duration){
        //console.log(`starting timer ${key}`);
         let timer = setTimeout(function(key){
             //when the timer expires
@@ -30,7 +32,7 @@ class WonderQ{
                //clear timer and delete reference
                this._deleteTimer(key);
            // console.log(this._timeoutStore);
-        }.bind(this,key), this._TIMER);
+        }.bind(this,key), duration || this._TIMER);
  // console.log(timer);
         return timer;
     }
@@ -114,6 +116,10 @@ class WonderQ{
     
     setTimerValue(time){
         this._TIMER = time;
+    }
+
+    notifyExpiry(socket){
+
     }
 }
 //singleton

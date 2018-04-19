@@ -9,7 +9,8 @@ Demonstration
 
 I know that an app was asked for, that generated messages automatically.
 But I thought it would be more fun to build some quick and dirty html pages,
-so that it could be interactive. Maybe I'll host this somewhere soon.
+so that it could be interactive. Next step for fun is to learn react and build 
+a react based front end for this.
 
 Those are located in Driver/ as consumer.html and producer.html
 

@@ -10,9 +10,16 @@
 <body style="display: flex; justify-content: center; align-items: center; height: 100%">
 <div style="text-align: left; widows: 800px;margin: 0 auto;" >
     <h1>Hello Producer!</h1>
+        <div>
         <label for="message">Message to WonderQ:</label>
         <input type="text" placeholder="enter a message" id="message">
-    <button type="submit" style="" onClick="addMessage(message)">Add your message</button>
+</div>
+    <div>
+        <label for='duration'> Duration for message(milliseconds):</label>
+        <input type="number" placeholder="enter a number " id='duration'>
+</div>
+        
+    <button type="submit" onClick="addMessage(message,duration)">Add your message</button>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.slim.js"></script>
 </body>
@@ -31,9 +38,9 @@
             alert(data);
     });
 
-    const addMessage = function(message){
+    const addMessage = function(message,time){
         //console.log(message.value);
-        socket.emit('addingMessage',{text:message.value,id:socket.id});
+        socket.emit('addingMessage',{text:message.value,id:socket.id,duration:time});
         document.getElementById('message').value = ""; 
     }
 </script>
