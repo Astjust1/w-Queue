@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Consumer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100%">
+    <div style="text-align: left; widows: 800px;margin: 0 auto;">
+        <h1>Hello Consumer!</h1>
+        <div>
+            <button onclick="getMessages()">Get Messages From WonderQ</button>
+        </div>
+        <div>
+            <label for="consume">Consume a message</label>
+            <input type="text" placeholder="Enter Id to consume" id='consumeMess'>
+            <button type="submit" onclick="consume(consumeMess)">Consume</button>
+        </div>
+    </div>
+
+    <div style="text-align: left; widows: 800px;margin: 0 auto;">
+        <table>
+            <thead>
+                <td>Message ID</td>
+                <td>Message</td>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.slim.js"></script>
+</body>
+</html>
+<script>
+    const socket = io.connect('http://localhost:3000');
+
+        socket.on('connect', function (data) {
+            //alert(data);
+            socket.type = 'consumer';
+            console.log(socket.id);
+            socket.emit('join', { text: `Howdyy from Consumer ${socket.id}`, id: socket.id ,type:'consumer'});
+        });
+    const consume = function(id){
+        //console.log(id);
+        socket.emit('consume',{message_id:id.value,id:socket.id});
+        let consumed = document.getElementById(id.value);
+        //console.log(consumed);
+        document.getElementsByTagName('tbody')[0].removeChild(consumed);
+        document.getElementById('consumeMess').value = "";
+    }
+    const getMessages = function(){
+        socket.emit('getMessages',socket.id);
+    }
+    socket.on('messageConsumed',(data)=>{
+        alert(data);
+    })
+    socket.on('sendingMessages',(data)=>{
+        if(Object.keys(data).length === 0){
+            alert('No messages to consume!');
+        }else{
+            //let oldBody = document.getElementsByName('tbody');
+           let body = document.getElementsByTagName('tbody')[0];
+           body.innerHTML = "";
+            Object.keys(data).forEach(function(id){
+                //let el = document.createElement('tr');
+                let el = body.insertRow();
+               // console.log(el);
+                let key = document.createElement('td');
+                let message = document.createElement('td');
+                let keyText = document.createTextNode(id);
+                let messageText = document.createTextNode(data[id]);
+                key.appendChild(keyText);
+                message.appendChild(messageText);
+                el.appendChild(key);
+                el.appendChild(message);
+                el.id = id;
+               // console.log(el);
+               // body.insertRow()
+               // body.appendChild(el);
+            });
+        }
+        
+    })
+
+</script>
