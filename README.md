@@ -3,6 +3,7 @@ Getting Started
 
 - Run `npm install` in the home directory
 - To Start the server, run `npm run server`
+- open Driver/consumer.html or Driver/producer.html ( or both!!)
 
 Demonstration
 -----
