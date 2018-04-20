@@ -39,7 +39,7 @@
         socket.on('connect', function (data) {
             //alert(data);
             socket.type = 'consumer';
-            console.log(socket.id);
+            //console.log(socket.id);
             socket.emit('join', { text: `Howdyy from Consumer ${socket.id}`, id: socket.id ,type:'consumer'});
         });
     const consume = function(id){

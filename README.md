@@ -32,3 +32,5 @@ and use docker + kubernetes. As for the language stack, I'd most definitely like
 it carries some benefits that will make life easier in the long run. And for a frontend framework, it doesn't really matter. As long as the 
 backend is flexible the frontend can be a mobile app in Objective C or a web app written with React.
 
+## Api
+The api design is in file /api.md

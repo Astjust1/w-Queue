@@ -28,7 +28,7 @@
     const socket = io.connect('http://localhost:3000');
     socket.on('connect',function(data){
         //alert(data);
-        console.log(socket.id);
+        //console.log(socket.id);
         socket.emit('join',{text:`Howdyy from Producer ${socket.id}`,id:socket.id,type:'producer'});
     });
     socket.on('info',function(data){
