@@ -3,9 +3,6 @@ WonderQ API
 
 I'm going to take a stab at this, I've never designed a websocket protocol before. I'm going to continue to use the design of socket.io
 
-
-
-to handle any information being returned
 ## Connection:
 
 params: URL => the url of the server being connected to.
